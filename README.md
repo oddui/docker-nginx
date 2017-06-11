@@ -1,6 +1,6 @@
 # My nginx docker image
 
-Run nginx in a container.
+Run nginx with [server-configs-nginx](https://github.com/h5bp/server-configs-nginx).
 
 ## Volumes
 
@@ -29,10 +29,6 @@ Run nginx in a container.
   docker run -it --rm my-nginx /bin/sh
 ```
 
-## Configs
-
-See https://github.com/h5bp/server-configs-nginx for nginx configs.
-
 ## SSL certs for testing
 
 In Keychain Access
@@ -42,7 +38,6 @@ In Keychain Access
 4. Export the certificate as .p12 format
 
 Convert the .p12 file to .crt and .key files (see https://gist.github.com/ericharth/8334664)
-
 
 ## SSL certs for production
 

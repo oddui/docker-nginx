@@ -1,0 +1,34 @@
+server {
+  listen [::]:80;
+  listen 80;
+
+  server_name durarara.me www.durarara.me;
+
+  return 301 https://durarara.me$request_uri;
+}
+
+server {
+  listen [::]:443 ssl http2;
+  listen 443 ssl http2;
+
+  server_name www.durarara.me;
+
+  include h5bp/directive-only/ssl.conf;
+
+  return 301 https://durarara.me$request_uri;
+}
+
+server {
+  listen [::]:443 ssl http2;
+  listen 443 ssl http2;
+
+  server_name durarara.me;
+
+  include h5bp/directive-only/ssl.conf;
+
+  root /content/durarara.me;
+
+  charset utf-8;
+
+  include h5bp/basic.conf;
+}

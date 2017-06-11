@@ -1,10 +1,26 @@
 FROM nginx:alpine
 LABEL maintainer "Ziyu Wang <odduid@gmail.com>"
 
-RUN mv /etc/nginx /etc/nginx-previous
 
-COPY server-configs-nginx /etc/nginx
+COPY sites /sites
 
-RUN ln -s /var/log/nginx /etc/nginx/logs \
+
+RUN apk --no-cache add git \
+      \
+      # Use h5bp/server-configs-nginx as the base for nginx configs
+      && mv /etc/nginx /etc/nginx-previous \
+      && git clone https://github.com/h5bp/server-configs-nginx.git /etc/nginx \
+      \
       && addgroup -S www \
-      && adduser -D -S -h /var/cache/nginx -s /sbin/nologin -G www www
+      && adduser -D -S -h /var/cache/nginx -s /sbin/nologin -G www www \
+      && ln -s /var/log/nginx /etc/nginx/logs \
+      \
+      && echo "ssl_certificate /certs/default.crt;" >> /etc/nginx/h5bp/directive-only/ssl.conf \
+      && echo "ssl_certificate_key /certs/default.key;" >> /etc/nginx/h5bp/directive-only/ssl.conf \
+      && cd /etc/nginx/sites-enabled \
+      && ln -s ../sites-available/no-default \
+      && ln -s ../sites-available/ssl.no-default \
+      && ln -s /sites/durarara.me \
+      && ln -s /sites/chat.durarara.me \
+      && ln -s /sites/legacy.durarara.me \
+      && ln -s /sites/server.local
