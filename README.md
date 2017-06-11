@@ -1,10 +1,11 @@
-# My nginx docker image
+# My nginx docker image [![Docker Build Statu](https://img.shields.io/docker/build/ziyu/nginx.svg)](https://hub.docker.com/r/ziyu/nginx)
 
 Run nginx with [server-configs-nginx](https://github.com/h5bp/server-configs-nginx).
 
 ## Volumes
 
 /certs
+
 /content
 
 ## Build
