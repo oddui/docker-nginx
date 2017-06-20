@@ -16,15 +16,30 @@ Run nginx with [server-configs-nginx](https://github.com/h5bp/server-configs-ngi
 
 ## Run
 
+Forward port and 443 to host.
+
 ```sh
   docker run -d \
-        -p 80:80 \
-        -p 443:443 \
         -v /my/content:/content:ro \
         -v /my/certs:/certs:ro \
+        -p 80:80 \
+        -p 443:443 \
         --name nginx \
         my-nginx
 ```
+
+Or use the host's network stack.
+
+```sh
+  docker run -d \
+        -v /my/content:/content:ro \
+        -v /my/certs:/certs:ro \
+        --network host \
+        --name nginx \
+        my-nginx
+```
+
+Run and access shell in the container.
 
 ```sh
   docker run -it --rm my-nginx /bin/sh
