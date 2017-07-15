@@ -58,3 +58,17 @@ Convert the .p12 file to .crt and .key files (see https://gist.github.com/ericha
 ## SSL certs for production
 
 Use certbot
+
+```sh
+  docker run -it \
+        -v /my/certs:/etc/letsencrypt \
+        --name certbot
+        certbot/certbot certonly --manual
+
+```
+
+Then start again later
+
+```sh
+  docker start -i certbot
+```
