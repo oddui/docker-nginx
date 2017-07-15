@@ -18,8 +18,7 @@ RUN apk --no-cache add git \
       && echo "ssl_certificate /certs/ziyus-ca/default.crt;" >> /etc/nginx/h5bp/directive-only/ssl.conf \
       && echo "ssl_certificate_key /certs/ziyus-ca/default.key;" >> /etc/nginx/h5bp/directive-only/ssl.conf \
       && cd /etc/nginx/sites-enabled \
-      && ln -s ../sites-available/no-default \
-      && ln -s ../sites-available/ssl.no-default \
+      && ln -s /sites/default \
       && ln -s /sites/durarara.me \
       && ln -s /sites/chat.durarara.me \
       && ln -s /sites/server.local
