@@ -15,12 +15,11 @@ RUN apk --no-cache add git \
       && adduser -D -S -h /var/cache/nginx -s /sbin/nologin -G www www \
       && ln -s /var/log/nginx /etc/nginx/logs \
       \
-      && echo "ssl_certificate /certs/default.crt;" >> /etc/nginx/h5bp/directive-only/ssl.conf \
-      && echo "ssl_certificate_key /certs/default.key;" >> /etc/nginx/h5bp/directive-only/ssl.conf \
+      && echo "ssl_certificate /certs/ziyus-ca/default.crt;" >> /etc/nginx/h5bp/directive-only/ssl.conf \
+      && echo "ssl_certificate_key /certs/ziyus-ca/default.key;" >> /etc/nginx/h5bp/directive-only/ssl.conf \
       && cd /etc/nginx/sites-enabled \
       && ln -s ../sites-available/no-default \
       && ln -s ../sites-available/ssl.no-default \
       && ln -s /sites/durarara.me \
       && ln -s /sites/chat.durarara.me \
-      && ln -s /sites/legacy.durarara.me \
       && ln -s /sites/server.local

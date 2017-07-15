@@ -15,6 +15,9 @@ server {
 
   include h5bp/directive-only/ssl.conf;
 
+  ssl_certificate     /certs/durarara.me/fullchain.pem;
+  ssl_certificate_key /certs/durarara.me/privkey.pem;
+
   return 301 https://durarara.me$request_uri;
 }
 
@@ -24,11 +27,13 @@ server {
 
   server_name durarara.me;
 
+  include h5bp/basic.conf;
   include h5bp/directive-only/ssl.conf;
+
+  ssl_certificate     /certs/durarara.me/fullchain.pem;
+  ssl_certificate_key /certs/durarara.me/privkey.pem;
 
   root /content/durarara.me;
 
   charset utf-8;
-
-  include h5bp/basic.conf;
 }
